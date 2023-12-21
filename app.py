@@ -6,8 +6,6 @@ app = Flask(__name__)
 frutas = []
 registros=[]
 
-#http://image.tmdb.org/t/p/w500/hZkgoQYus5vegHoetLkCJzb17zJ.jpg
-
 @app.route('/', methods=["GET", "POST"])
 def principal():
 	#frutas = ["Morango", "Uva", "Laranja", "Mamão", "Maçã", "Pêra", "Melão", "Abacaxi"]
