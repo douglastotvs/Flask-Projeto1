@@ -1,30 +1,11 @@
 from flask import Flask, render_template, request
 import urllib.request, json
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
 
 app = Flask(__name__)
-
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////curso.db'
-
-db = SQLAlchemy(app)
 
 frutas = []
 registros=[]
 
-class Base(DeclarativeBase):
-  pass
-
-class cursos(db.Model):
-	id = db.Column(db.Integer, primary_key=True)
-	nome = db.Column(db.String(50))
-	descricao = db.Column(db.String(100))
-	ch = db.Column(db.Integer)
-
-	def __init__(self, nome, descricao, ch):
-		self.nome = nome
-		self.descricao = descricao
-		self.ch = ch
 
 @app.route('/', methods=["GET", "POST"])
 def principal():
@@ -63,7 +44,5 @@ def filmes(propriedade):
 
 	return render_template("filmes.html", filmes=jsondata['results'])
 
-if __name__ =="__main__":
-	
-	db = SQLAlchemy(model_class=cursos)
+if __name__ =="__main__":	
 	app.run(debug=True)
