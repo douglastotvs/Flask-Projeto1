@@ -1,0 +1,28 @@
+*{
+  box-sizing: border-box;
+}
+
+.body{
+  margin: 0;
+  font-family: sans-serif;
+  background-color: #121212;
+  color: #fff;
+}
+
+.border{
+  border: 1px solid red;
+}
+
+.sidebar{
+  position: fixed;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.logo-img{
+  width: 35px;
+  min-width: 35px;
+  border-radius: 50%;
+  object-fit: cover;
+}
