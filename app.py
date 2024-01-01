@@ -23,6 +23,7 @@ class cursos(db.Model):
 		self.nome = nome
 		self.descricao = descricao
 		self.ch = ch
+
 @app.route('/', methods=["GET", "POST"])
 def principal():
 	#frutas = ["Morango", "Uva", "Laranja", "Mamão", "Maçã", "Pêra", "Melão", "Abacaxi"]
@@ -59,6 +60,10 @@ def filmes(propriedade):
 	jsondata = json.loads(dados)
 
 	return render_template("filmes.html", filmes=jsondata['results'])
+
+@app.route('/cursos')
+def lista_cursos():
+	return render_template("cursos.html", cursos=cursos.query.all())
 
 if __name__ =="__main__":	
 	db.create_all()
