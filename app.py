@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 import urllib.request, json
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.orm import DeclarativeBase
@@ -65,6 +65,21 @@ def filmes(propriedade):
 def lista_cursos():
 	return render_template("cursos.html", cursos=cursos.query.all())
 
+@app.route('/cria_curso', methods=['GET', "POST"])
+def cria_curso():
+	nome = request.form.get('nome')
+	descricao = request.form.get('descricao')
+	ch = request.form.get('ch')
+
+	if request.method == 'POST':
+		curso = cursos(nome, descricao, ch)
+		db.session.add(curso)
+		db.session.commit()
+		return redirect(url_for('lista_cursos'))
+
+	return render_template("novo_curso.html")
+
 if __name__ =="__main__":	
 	db.create_all()
 	app.run(debug=True)
+	
